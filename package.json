@@ -6,7 +6,7 @@
 	"types": "./typings.d.ts",
 	"main": "bot.js",
 	"scripts": {
-		"start": "node bot.js"
+		"start": "nodemon bot.js"
 	},
 	"repository": {
 		"type": "git",
@@ -38,7 +38,10 @@
 	"homepage": "https://github.com/NamVr/DiscordBot-Template#readme",
 	"dependencies": {
 		"@discordjs/rest": "^1.0.0",
+		"@supabase/supabase-js": "^1.35.6",
 		"discord-api-types": "^0.36.2",
-		"discord.js": "^14.0.2"
+		"discord.js": "^14.0.2",
+		"nodemon": "^2.0.19",
+		"undici": "^5.10.0"
 	}
 }
