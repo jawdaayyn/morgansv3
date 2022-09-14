@@ -14,6 +14,10 @@ const supabase = createClient(supabase_url, supabase_key);
 
 const getList = async () => {
 	const { data } = await supabase.from("players").select();
+	if (data.length === 0) {
+		console.log("cc");
+		return 0;
+	}
 	return data;
 };
 /**
@@ -25,9 +29,9 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("liste")
 		.setDescription("Afficher les joueurs actuellement enregistrés."),
-
 	async execute(interaction) {
 		const liste = await getList();
+
 		const listEmbed = new EmbedBuilder();
 
 		listEmbed.setTitle("Liste des joueurs");
@@ -42,12 +46,21 @@ module.exports = {
 			iconURL:
 				"https://www.connectesport.com/wp-content/uploads/2015/09/BASE_LCS_Logo_RGB_72dpi.png",
 		});
-		listEmbed.addFields({
-			name: "joueurs",
-			value: liste
-				.map((player) => `${player.name} : ${player.account} `)
-				.join("\n"),
-		});
+		if (liste === 0) {
+			listEmbed.addFields({
+				name: "Erreur",
+				value:
+					"Il n'y a aucun joueur inscrit dans le tableau, ajoutez en avec /addplayer",
+			});
+		} else {
+			listEmbed.addFields({
+				name: "joueurs",
+				value: liste
+					.map((player) => `${player.name} : ${player.account}`)
+					.join("\n"),
+			});
+		}
+
 		// Replies to the interaction!
 
 		await interaction.reply({
