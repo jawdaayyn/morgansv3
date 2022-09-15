@@ -1,8 +1,10 @@
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
+
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const { createClient } = require("@supabase/supabase-js");
-const { supabase_key, supabase_url } = require("../../../config.json");
 
-const supabase = createClient(supabase_url, supabase_key);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const removeUser = async (id, username) => {
 	const { error } = await supabase

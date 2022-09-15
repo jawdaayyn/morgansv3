@@ -5,12 +5,15 @@
  * @version 3.3.0
  */
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 // Deconstructed the constants we need in this file.
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const { createClient } = require("@supabase/supabase-js");
-const { supabase_key, supabase_url } = require("../../../config.json");
-
-const supabase = createClient(supabase_url, supabase_key);
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const getList = async () => {
 	const { data } = await supabase.from("players").select();

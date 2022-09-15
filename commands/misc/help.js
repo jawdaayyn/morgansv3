@@ -4,10 +4,10 @@
  * @since 1.0.0
  * @version 3.3.0
  */
-
+const dotenv = require("dotenv");
+dotenv.config();
 // Deconstructing prefix from config file to use in help command
-const { prefix } = require("./../../config.json");
-
+const PREFIX = process.env.PREFIX;
 // Deconstructing EmbedBuilder to create embeds within this command
 const { EmbedBuilder, ChannelType } = require("discord.js");
 
@@ -42,7 +42,7 @@ module.exports = {
 				.addFields([
 					{
 						name: "Usage",
-						value: `\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`,
+						value: `\nYou can send \`${PREFIX}help [command name]\` to get info on a specific command!`,
 					},
 				]);
 
@@ -120,7 +120,7 @@ module.exports = {
 			commandEmbed.addFields([
 				{
 					name: "Usage",
-					value: `\`${prefix}${command.name} ${command.usage}\``,
+					value: `\`${PREFIX}${command.name} ${command.usage}\``,
 					inline: true,
 				},
 			]);

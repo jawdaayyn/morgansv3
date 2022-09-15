@@ -4,8 +4,9 @@
  * @since 3.0.0
  */
 
-const { prefix } = require("../config.json");
-
+const dotenv = require("dotenv");
+dotenv.config();
+const PREFIX = process.env.PREFIX;
 module.exports = {
 	/**
 	 * @description Executes when the bot is pinged.
@@ -15,7 +16,7 @@ module.exports = {
 
 	async execute(message) {
 		return message.channel.send(
-			`Hi ${message.author}! My prefix is \`${prefix}\`, get help by \`${prefix}help\``
+			`Hi ${message.author}! My prefix is \`${PREFIX}\`, get help by \`${PREFIX}help\``
 		);
 	},
 };

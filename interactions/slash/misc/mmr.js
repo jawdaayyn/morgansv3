@@ -3,7 +3,6 @@ const { createClient } = require("@supabase/supabase-js");
 const { supabase_key, supabase_url } = require("../../../config.json");
 
 const supabase = createClient(supabase_url, supabase_key);
-const { request } = require("undici");
 
 async function getJSONResponse(body) {
 	let fullBody = "";
